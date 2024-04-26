@@ -15,13 +15,12 @@ class ReminderService {
     const response = await this.http.post<Reminder>('/todos', {
       title,
     });
-    return response.status;
+    return response.data;
   }
 
   async removeReminder(id: number) {
     const response = await this.http.delete('/todos/' + id);
-    console.log(response);
-    return response.data;
+    return response.status;
   }
 }
 
