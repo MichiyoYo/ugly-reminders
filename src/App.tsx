@@ -12,8 +12,8 @@ function App() {
   }, []);
 
   const removeReminder = async (id: number) => {
-    const reminders = await ReminderService.removeReminder(id);
-    setReminders(reminders);
+    await ReminderService.removeReminder(id);
+    setReminders(reminders.filter((r) => r.id !== id));
   };
 
   const loadReminders = async () => {
