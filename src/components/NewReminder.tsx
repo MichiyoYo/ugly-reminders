@@ -12,6 +12,12 @@ function NewReminder({ onAdd }: NewReminderProps): JSX.Element {
     inputRef?.current?.focus();
   }, [inputRef]);
 
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    onAdd(title);
+    setTitle('');
+  };
+
   return (
     <form>
       <label htmlFor='Add Reminder'></label>
@@ -24,11 +30,7 @@ function NewReminder({ onAdd }: NewReminderProps): JSX.Element {
       />
       <button
         type='submit'
-        onClick={(e) => {
-          e.preventDefault();
-          onAdd(title);
-          setTitle('');
-        }}
+        onClick={onSubmit}
         className='btn btn-primary rounded-pill my-3'
       >
         Add Reminder
