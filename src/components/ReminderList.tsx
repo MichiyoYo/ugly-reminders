@@ -2,15 +2,24 @@ import Reminder from '../models/reminders';
 
 interface ReminderListProps {
   items: Reminder[];
+  onRemove: (id: number) => void;
 }
 
-function ReminderList({ items }: ReminderListProps) {
+function ReminderList({ items, onRemove }: ReminderListProps) {
   return (
     <ul className='list-group'>
       {items.map((i) => (
-        <li className='list-group-item' key={i.id}>
+        <li
+          className='list-group-item d-flex justify-content-between'
+          key={i.id}
+        >
           {i.title}
-          <button className='btn btn-outline-danger'>Delete</button>
+          <button
+            className='btn btn-outline-danger'
+            onClick={() => onRemove(i.id)}
+          >
+            Delete
+          </button>
         </li>
       ))}
     </ul>
